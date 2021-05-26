@@ -26,8 +26,9 @@
         <label for="category">Category</label>
         <select class="form-control" id="category" name="category" required>
             <option selected disabled>Select Category</option>
-            <option value="1" {{ $customer->category == 'Active' ? 'selected' : "" }} >Active</option>
-            <option value="2" {{ $customer->category == 'Inactive' ? 'selected' : "" }} >inactive</option>
+            @foreach($customer->categoryOptions() as $categoryOptionKey => $categoryOptionValue)
+                <option value="{{ $categoryOptionKey }}" {{ $customer->category == $categoryOptionValue ? 'selected' : "" }} >{{ $categoryOptionValue }}</option>
+            @endforeach
         </select>
         <div class="text-danger">{{ $errors->first('category')}}</div>
     </div>

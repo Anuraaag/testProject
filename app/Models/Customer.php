@@ -34,11 +34,22 @@ class Customer extends Model
     }
 
     public function getCategoryAttribute($attribute){
+        
+        return $this->categoryOptions()[$attribute];
+        // return [
+        //     1 => "Active",
+        //     2 => "Inactive",
+        //     null => ""
+        // ][$attribute];
+    }
+
+    public function categoryOptions(){      // use any name for this function
         return [
             1 => "Active",
             2 => "Inactive",
+            3 => "In-progress",
             null => ""
-        ][$attribute];
+        ];
     }
 
 }

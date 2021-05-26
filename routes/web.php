@@ -19,12 +19,17 @@ Route::view('/', 'welcome');
 Route::view('contact', 'contact');
 Route::view('about', 'about');
 
-Route::get('customers', [CustomersController::class, 'index']);
-Route::get('customers/create', [CustomersController::class, 'create']);
-Route::post('customers', [CustomersController::class, 'store']);
-Route::get('customers/{customer}', [CustomersController::class, 'show']);
-Route::get('customers/{customer}/edit', [CustomersController::class, 'edit']);
-Route::patch('customers/{customer}', [CustomersController::class, 'update']);
+
+// Route::get('customers', [CustomersController::class, 'index']);
+// Route::get('customers/create', [CustomersController::class, 'create']);
+// Route::post('customers', [CustomersController::class, 'store']);
+// Route::get('customers/{customer}', [CustomersController::class, 'show']);
+// Route::get('customers/{customer}/edit', [CustomersController::class, 'edit']);
+// Route::patch('customers/{customer}', [CustomersController::class, 'update']);
+// Route::delete('customers/{customer}', [CustomersController::class, 'destroy']);
+
+//as we have followed all the conventions, we can have a single route replacing the above routes, as follows
+Route::resource('customers', CustomersController::class);
 
 
 Route::get('companies', [CompaniesController::class, 'index']);

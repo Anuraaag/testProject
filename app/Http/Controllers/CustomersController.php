@@ -21,15 +21,16 @@ class CustomersController extends Controller
     }
 
     public function store()  {  
-
-        $data = request()->validate([
-            'name' => 'required|min:2',
-            'email' => 'required|email|unique:App\Models\Customer,email',
-            'category' => 'required',
-            'company_id' => 'required'
-        ]);
         
-        Customer::create($data);
+        // $data = request()->validate([
+        //     'name' => 'required|min:2',
+        //     'email' => 'required|email|unique:App\Models\Customer,email',
+        //     'category' => 'required',
+        //     'company_id' => 'required'
+        // ]);
+        // Customer::create($data);
+
+        Customer::create($this->validateRequest());
 
         // $customer = new Customer();
         // $customer->name = request('name');
@@ -54,16 +55,24 @@ class CustomersController extends Controller
     }
 
     public function update (Customer $customer){
- 
-        $data = request()->validate([
+       
+        $customer->update($this->validateRequest());       
+        return view('customers.show', compact('customer'));
+    }
+
+    public function destroy (Customer $customer){
+    //    dd("ahoy mate");
+        $customer->delete();       
+        $customers = Customer::all();
+        return view('customers.index', compact('customers'));
+    }
+
+    public function validateRequest(){    // use any name for this function
+        return request()->validate([
             'name' => 'required|min:2',
-            // 'email' => 'required|email|unique:App\Models\Customer,email',
-            'email' => 'required|email',
+            'email' => 'required|email',  //|unique:App\Models\Customer,email'   -> can't use this because of the edit function
             'category' => 'required',
             'company_id' => 'required'
         ]);
-        
-        $customer->update($data);       
-        return view('customers.show', compact('customer'));
     }
 }
