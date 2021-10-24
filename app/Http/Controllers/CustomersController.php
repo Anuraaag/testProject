@@ -28,7 +28,7 @@ class CustomersController extends Controller
         //     'category' => 'required',
         //     'company_id' => 'required'
         // ]);
-        // Customer::create($data);
+        // Customer::create($data); //mass assignment // this is where we need fillable/guarded
 
         Customer::create($this->validateRequest());
 

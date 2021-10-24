@@ -13,6 +13,12 @@
     <div class="container">
         @include('nav', ['user'=>'Anurag'])
 
+        @if(session()->has('message'))
+            <div class="alert alert-success mt-3" role="alert">
+                <strong>Success!</strong> {{ session()->get('message') }}
+            </div>
+        @endif
+
         @yield('content')
     </div>
 

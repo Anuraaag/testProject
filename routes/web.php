@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\CompaniesController;
+use App\Http\Controllers\ContactFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,10 +17,14 @@ use App\Http\Controllers\CompaniesController;
 */
 
 Route::view('/', 'welcome');
-Route::view('contact', 'contact');
 Route::view('about', 'about');
 
+//company
+Route::get('companies', [CompaniesController::class, 'index']);
+Route::get('companies/create', [CompaniesController::class, 'create']);
+Route::post('companies', [CompaniesController::class, 'store']);
 
+//customer
 // Route::get('customers', [CustomersController::class, 'index']);
 // Route::get('customers/create', [CustomersController::class, 'create']);
 // Route::post('customers', [CustomersController::class, 'store']);
@@ -32,6 +37,10 @@ Route::view('about', 'about');
 Route::resource('customers', CustomersController::class);
 
 
-Route::get('companies', [CompaniesController::class, 'index']);
-Route::get('companies/create', [CompaniesController::class, 'create']);
-Route::post('companies', [CompaniesController::class, 'store']);
+//contact
+Route::get('contact', [ContactFormController::class, 'create']);
+Route::post('contact', [ContactFormController::class, 'store']);
+
+// Route::resource('contact', ContactFormController::class);
+// Route::get('contact', 'ContactFormController@create');
+// Route::view('contact', 'contact');
