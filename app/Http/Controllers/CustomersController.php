@@ -8,6 +8,10 @@ use Illuminat\Http\Request;
 
 class CustomersController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth')->except(['index']); //controller level middleware
+    }
+
     public function index()  {        
         $customers = Customer::all();
         return view('customers.index', compact('customers'));

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +17,9 @@ use App\Http\Controllers\ContactFormController;
 |
 */
 
-Route::view('/', 'welcome');
-Route::view('about', 'about');
+Route::get('/', [HomeController::class, 'index']);
+
+Route::view('about', 'about')->middleware('test');
 
 //company
 Route::get('companies', [CompaniesController::class, 'index']);
@@ -35,6 +37,7 @@ Route::post('companies', [CompaniesController::class, 'store']);
 
 //as we have followed all the conventions, we can have a single route replacing the above routes, as follows
 Route::resource('customers', CustomersController::class);
+// Route::resource('customers', CustomersController::class)->middleware('auth'); //route level middleware
 
 
 //contact
@@ -44,3 +47,7 @@ Route::post('contact', [ContactFormController::class, 'store']);
 // Route::resource('contact', ContactFormController::class);
 // Route::get('contact', 'ContactFormController@create');
 // Route::view('contact', 'contact');
+
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
