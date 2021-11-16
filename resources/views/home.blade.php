@@ -14,10 +14,11 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <my-button text="My button using vue component" type="submit"></my-button> {{-- 'text' is just a variable sent to vue as a prop --}}
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+ 
