@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Company;
 use Illuminat\Http\Request;
+use Illuminat\Support\Facades\Mail;
+
 
 class CustomersController extends Controller
 {
@@ -41,6 +43,8 @@ class CustomersController extends Controller
         // $customer->email = request('email');
         // $customer->category = request('category');
         // $customer->save();
+
+
 
         return redirect('customers');
         // return back();

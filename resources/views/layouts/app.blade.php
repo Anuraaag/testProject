@@ -23,11 +23,18 @@
 </head>
 <body>
     <div id="app">
-            @include('nav')
+        @include('nav')
 
         <main class="py-4">
             <div class="container">
-                @yield('content')
+
+			@if(session()->has('message'))
+            <div class="alert alert-success mt-3" role="alert">
+                <strong>Success!</strong> {{ session()->get('message') }}
+            </div>
+            @endif
+			
+			@yield('content')
             </div>
         </main>
     </div>
